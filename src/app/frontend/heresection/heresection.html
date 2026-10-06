@@ -1,0 +1,33 @@
+<header
+  class="relative min-h-[400x] bg-cover bg-center"
+  [style.background-image]="'url(' + hero()?.imageUrl + ')'">
+
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 flex min-h-[400px] flex-col items-center justify-center text-center px-6">
+
+    <!-- Heading -->
+    <h1 class="text-6xl font-bold text-white md:text-7xl">
+      {{ hero()?.heading }}
+    </h1>
+
+    <!-- Sub Heading -->
+    <p class="mt-6 text-2xl text-white md:text-3xl">
+      {{ hero()?.subHeading }}
+    </p>
+
+    <!-- Button -->
+    <a
+      [href]="hero()?.buttonLink"
+      class="mt-12 rounded-full bg-white px-16 py-6
+             text-2xl font-semibold text-blue-600
+             transition duration-300 hover:scale-105 hover:bg-gray-100">
+      {{ hero()?.buttonText }}
+    </a>
+
+  </div>
+
+</header>

@@ -1,0 +1,243 @@
+<div class="min-h-screen bg-gray-50 p-6">
+
+  <div class="mx-auto max-w-6xl">
+
+    <!-- Header -->
+    <div class="mb-6">
+      <h1 class="text-2xl font-bold text-gray-900">
+        Contact Information
+      </h1>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Manage your contact details
+      </p>
+    </div>
+
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-1">
+
+      <!-- Form -->
+      <div class="rounded-2xl bg-white p-6 shadow-sm">
+
+        <form [formGroup]="ContactForm" (ngSubmit)="onSubmit()">
+
+          <!-- Phone -->
+          <div class="mb-5">
+            <label class="mb-2 block text-sm font-semibold text-gray-700">
+              Phone Number
+            </label>
+
+            <input
+              type="text"
+              formControlName="phoneNumber"
+              placeholder="+91-892-894-6056"
+              class="w-full rounded-xl border border-gray-300 px-4 py-3
+                     text-sm outline-none transition
+                     focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            >
+
+            @if (
+              ContactForm.get('phoneNumber')?.touched &&
+              ContactForm.get('phoneNumber')?.hasError('required')
+            ) {
+              <p class="mt-1 text-sm text-red-500">
+                Phone number is required
+              </p>
+            }
+          </div>
+
+
+          <!-- Email -->
+          <div class="mb-5">
+            <label class="mb-2 block text-sm font-semibold text-gray-700">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="example@gmail.com"
+              class="w-full rounded-xl border border-gray-300 px-4 py-3
+                     text-sm outline-none transition
+                     focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            >
+
+            @if (
+              ContactForm.get('email')?.touched &&
+              ContactForm.get('email')?.hasError('required')
+            ) {
+              <p class="mt-1 text-sm text-red-500">
+                Email is required
+              </p>
+            }
+          </div>
+
+
+          <!-- Address -->
+          <div class="mb-5">
+            <label class="mb-2 block text-sm font-semibold text-gray-700">
+              Office Address
+            </label>
+
+            <textarea
+              rows="4"
+              formControlName="officeAddress"
+              placeholder="834, Vaisali, Delhi - 110006"
+              class="w-full resize-none rounded-xl border border-gray-300
+                     px-4 py-3 text-sm outline-none transition
+                     focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            ></textarea>
+
+            @if (
+              ContactForm.get('officeAddress')?.touched &&
+              ContactForm.get('officeAddress')?.hasError('required')
+            ) {
+              <p class="mt-1 text-sm text-red-500">
+                Office address is required
+              </p>
+            }
+          </div>
+
+
+          <!-- Google Map -->
+          <div class="mb-6">
+            <label class="mb-2 block text-sm font-semibold text-gray-700">
+              Google Map Embed Code
+            </label>
+
+            <textarea
+              rows="5"
+              formControlName="googleMapEmbedCode"
+              placeholder="Paste the full Google Maps iframe code"
+              class="w-full resize-none rounded-xl border border-gray-300
+                     px-4 py-3 text-sm font-mono outline-none transition
+                     focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            ></textarea>
+
+            <p class="mt-1 text-xs text-gray-500">
+              Paste the full Google Maps iframe code
+            </p>
+          </div>
+
+
+          <!-- Button -->
+          <button
+            type="submit"
+            [disabled]="isloading()"
+            class="inline-flex w-full items-center justify-center
+                   gap-2 rounded-xl bg-blue-600 px-6 py-3
+                   font-semibold text-white shadow-lg
+                   shadow-blue-200 transition
+                   hover:bg-blue-700
+                   disabled:cursor-not-allowed
+                   disabled:opacity-70"
+          >
+
+            @if (isloading()) {
+
+              <span
+                class="h-5 w-5 animate-spin rounded-full
+                       border-2 border-white/40 border-t-white">
+              </span>
+
+              Saving...
+
+            } @else {
+
+              Save Changes
+
+            }
+
+          </button>
+
+        </form>
+
+      </div>
+
+
+      <!-- Live Preview -->
+      <div class="rounded-2xl bg-white p-6 shadow-sm">
+
+        <h2 class="mb-5 text-lg font-bold text-gray-900">
+          Live Preview
+        </h2>
+
+        <div class="space-y-4">
+
+          <!-- Phone -->
+          <div class="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
+
+            <span class="text-xl">📞</span>
+
+            <div>
+              <p class="text-xs font-medium text-gray-500">
+                Phone
+              </p>
+
+              <p class="font-medium text-gray-900">
+                {{ ContactForm.get('phoneNumber')?.value }}
+              </p>
+            </div>
+
+          </div>
+
+
+          <!-- Email -->
+          <div class="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
+
+            <span class="text-xl">✉️</span>
+
+            <div>
+              <p class="text-xs font-medium text-gray-500">
+                Email
+              </p>
+
+              <p class="font-medium text-gray-900">
+                {{ ContactForm.get('email')?.value }}
+              </p>
+            </div>
+
+          </div>
+
+
+          <!-- Address -->
+          <div class="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
+
+            <span class="text-xl">📍</span>
+
+            <div>
+              <p class="text-xs font-medium text-gray-500">
+                Office Address
+              </p>
+
+              <p class="font-medium leading-relaxed text-gray-900">
+                {{ ContactForm.get('officeAddress')?.value }}
+              </p>
+            </div>
+
+          </div>
+
+
+          <!-- Map -->
+          @if (ContactForm.get('googleMapEmbedCode')?.value) {
+
+            <div class="overflow-hidden rounded-xl border">
+
+              <div
+                [innerHTML]="mapHtml"
+                class="h-64 w-full"
+              ></div>
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

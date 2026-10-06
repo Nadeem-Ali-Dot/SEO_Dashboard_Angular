@@ -1,0 +1,452 @@
+<div class="space-y-6">
+
+  <!-- ========================================= -->
+  <!-- PAGE HEADER -->
+  <!-- ========================================= -->
+
+  <div>
+    <h1 class="text-3xl font-bold text-slate-900">
+      Schema Management
+    </h1>
+
+    <p class="mt-1 text-slate-500">
+      Manage structured data for rich search results
+    </p>
+  </div>
+
+
+
+  <!-- ========================================= -->
+  <!-- SCHEMA TYPE -->
+  <!-- ========================================= -->
+
+  <div
+    class="bg-white border border-slate-200
+           rounded-2xl shadow-sm"
+  >
+
+    <div class="p-6">
+
+      <label
+        for="schemaType"
+        class="block mb-2 text-sm font-semibold text-slate-700"
+      >
+        Schema Type
+      </label>
+
+
+      <select
+        id="schemaType"
+        class="w-full h-12 px-4 rounded-xl
+               border border-slate-300
+               bg-white text-slate-700
+               outline-none
+               focus:border-blue-500
+               focus:ring-4 focus:ring-blue-100
+               transition"
+      >
+
+        <option value="organization">
+          Organization Schema
+        </option>
+
+        <option value="faq">
+          FAQ Schema
+        </option>
+
+        <option value="breadcrumb">
+          Breadcrumb Schema
+        </option>
+
+        <option value="website">
+          Website Schema
+        </option>
+
+        <option value="local-business">
+          LocalBusiness Schema
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ========================================= -->
+  <!-- ORGANIZATION SCHEMA -->
+  <!-- ========================================= -->
+
+  <div
+    class="bg-white border border-slate-200
+           rounded-2xl shadow-sm"
+  >
+
+    <!-- HEADER -->
+
+    <div
+      class="px-6 py-5
+             border-b border-slate-200
+             flex items-center gap-3"
+    >
+
+      <div
+        class="w-10 h-10 rounded-xl
+               bg-blue-100 text-blue-600
+               flex items-center justify-center
+               text-lg"
+      >
+        🏢
+      </div>
+
+
+      <div>
+
+        <h2
+          class="text-lg font-semibold text-slate-900"
+        >
+          Organization Schema Details
+        </h2>
+
+        <p class="text-sm text-slate-500">
+          Provide information about your organization
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- FORM -->
+
+    <div class="p-6 space-y-6">
+
+
+      <!-- ORGANIZATION NAME -->
+
+      <div>
+
+        <label
+          for="organizationName"
+          class="block mb-2
+                 text-sm font-semibold
+                 text-slate-700"
+        >
+          Organization Name
+        </label>
+
+
+        <input
+          id="organizationName"
+          type="text"
+          placeholder="Enter organization name"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 bg-white text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+
+      </div>
+
+
+
+      <!-- URL -->
+
+      <div>
+
+        <label
+          for="organizationUrl"
+          class="block mb-2
+                 text-sm font-semibold
+                 text-slate-700"
+        >
+          URL
+        </label>
+
+
+        <input
+          id="organizationUrl"
+          type="url"
+          placeholder="https://example.com"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 bg-white text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+
+      </div>
+
+
+
+      <!-- LOGO URL -->
+
+      <div>
+
+        <label
+          for="logoUrl"
+          class="block mb-2
+                 text-sm font-semibold
+                 text-slate-700"
+        >
+          Logo URL
+        </label>
+
+
+        <input
+          id="logoUrl"
+          type="url"
+          placeholder="https://example.com/logo.png"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 bg-white text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+
+
+        <p class="mt-2 text-xs text-slate-400">
+          Use the full public URL of your organization logo.
+        </p>
+
+      </div>
+
+
+
+      <!-- EMAIL -->
+
+      <div>
+
+        <label
+          for="organizationEmail"
+          class="block mb-2
+                 text-sm font-semibold
+                 text-slate-700"
+        >
+          Email
+        </label>
+
+
+        <input
+          id="organizationEmail"
+          type="email"
+          placeholder="contact@example.com"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 bg-white text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+
+      </div>
+
+
+
+      <!-- DESCRIPTION -->
+
+      <div>
+
+        <label
+          for="organizationDescription"
+          class="block mb-2
+                 text-sm font-semibold
+                 text-slate-700"
+        >
+          Description
+        </label>
+
+
+        <textarea
+          id="organizationDescription"
+          rows="5"
+          placeholder="Describe your organization..."
+          class="w-full px-4 py-3 rounded-xl
+                 border border-slate-300
+                 bg-white text-slate-800
+                 placeholder:text-slate-400
+                 outline-none resize-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        ></textarea>
+
+      </div>
+
+
+
+      <!-- SAVE -->
+
+      <div
+        class="pt-2 flex justify-end"
+      >
+
+        <button
+          type="button"
+          class="px-7 py-3 rounded-xl
+                 bg-blue-600 text-white
+                 font-semibold
+                 shadow-lg shadow-blue-200
+                 hover:bg-blue-700
+                 transition"
+        >
+          Save Schema
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ========================================= -->
+  <!-- EXISTING SCHEMAS -->
+  <!-- ========================================= -->
+
+  <div
+    class="bg-white border border-slate-200
+           rounded-2xl shadow-sm"
+  >
+
+    <!-- HEADER -->
+
+    <div
+      class="px-6 py-5
+             border-b border-slate-200"
+    >
+
+      <h2
+        class="text-lg font-semibold text-slate-900"
+      >
+        Existing Schemas
+      </h2>
+
+      <p class="text-sm text-slate-500 mt-1">
+        Manage your currently configured schemas
+      </p>
+
+    </div>
+
+
+
+    <!-- SCHEMA ITEM -->
+
+    <div class="p-5">
+
+      <div
+        class="border border-slate-200
+               rounded-xl p-5
+               flex items-center justify-between
+               hover:border-blue-200
+               hover:bg-slate-50
+               transition"
+      >
+
+        <!-- LEFT -->
+
+        <div class="flex items-center gap-4">
+
+          <div
+            class="w-11 h-11 rounded-xl
+                   bg-blue-100 text-blue-600
+                   flex items-center justify-center"
+          >
+            🏢
+          </div>
+
+
+          <div>
+
+            <h3
+              class="font-semibold
+                     text-slate-900"
+            >
+              Organization
+            </h3>
+
+            <p
+              class="text-sm
+                     text-slate-500 mt-1"
+            >
+              Organization Schema
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- RIGHT -->
+
+        <div class="flex items-center gap-6">
+
+          <!-- STATUS -->
+
+          <span
+            class="px-3 py-1.5
+                   rounded-full
+                   bg-green-100
+                   text-green-700
+                   text-sm font-medium"
+          >
+            Active
+          </span>
+
+
+          <!-- DATE -->
+
+          <span
+            class="text-sm
+                   text-slate-400"
+          >
+            Updated: 6/20/2026
+          </span>
+
+
+          <!-- ACTIONS -->
+
+          <button
+            type="button"
+            class="text-blue-600
+                   hover:text-blue-700
+                   font-medium"
+          >
+            Edit
+          </button>
+
+
+          <button
+            type="button"
+            class="text-red-500
+                   hover:text-red-600
+                   font-medium"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

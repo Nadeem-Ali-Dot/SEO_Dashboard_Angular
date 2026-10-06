@@ -1,0 +1,572 @@
+ <form [formGroup]="seoform" (ngSubmit)="onSubmit()">
+
+<div class="space-y-6">
+
+  <!-- ================= PAGE HEADER ================= -->
+
+  <div>
+    <h1 class="text-3xl font-bold text-slate-900">
+      SEO Settings
+    </h1>
+
+    <p class="mt-1 text-slate-500">
+      Manage your website's SEO configuration
+    </p>
+  </div>
+
+  <!-- ================= META TAGS ================= -->
+
+  <div
+    class="bg-white border border-slate-200
+           rounded-2xl shadow-sm"
+  >
+
+    <!-- Section Header -->
+
+    <div
+      class="px-6 py-5 border-b border-slate-200
+             flex items-center gap-3"
+    >
+
+      <div
+        class="w-10 h-10 rounded-xl
+               bg-blue-100 text-blue-600
+               flex items-center justify-center"
+      >
+        🔍
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold text-slate-900">
+          Meta Tags
+        </h2>
+
+        <p class="text-sm text-slate-500">
+          Configure your website's search engine metadata
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Form -->
+
+    <div class="p-6 space-y-6">
+
+      <!-- Meta Title -->
+
+      <div>
+
+        <div class="flex items-center justify-between mb-2">
+
+          <label
+            for="metaTitle"
+            class="text-sm font-semibold text-slate-700"
+          >
+            Meta Title
+          </label>
+
+          <span class="text-xs text-slate-400">
+            50-60 characters recommended
+          </span>
+
+        </div>
+
+        <input
+         
+          type="text" formControlName="metaTitle"
+          placeholder="Enter your meta title"
+          maxlength="60"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 bg-white
+                 text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+<p class="text-red-500 font-semibold">{{getError('metaTitle')}}</p>
+      </div>
+
+
+      <!-- Meta Description -->
+
+      <div>
+
+        <div class="flex items-center justify-between mb-2">
+
+          <label
+            for="metaDescription"
+            class="text-sm font-semibold text-slate-700"
+          >
+            Meta Description
+          </label>
+
+          <span class="text-xs text-slate-400">
+            150-160 characters recommended
+          </span>
+
+        </div>
+
+        <textarea
+           formControlName="metaDescription"
+          rows="4"
+          maxlength="160"
+          placeholder="Enter your meta description"
+          class="w-full px-4 py-3 rounded-xl
+                 border border-slate-300
+                 bg-white
+                 text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 resize-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        ></textarea>
+<p class="text-red-500 font-semibold">{{getError('metaDescription')}}</p>
+
+      </div>
+
+
+      <!-- Focus Keywords -->
+
+      <div>
+
+        <label
+          for="keywords"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          Focus Keywords
+        </label>
+
+        <input
+          formControlName="focusKeywords"
+          type="text"
+          placeholder="e.g. car rental, luxury cars, Delhi car rental"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 bg-white
+                 text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+<p class="text-red-500 font-semibold">{{getError('focusKeywords')}}</p>
+        <p class="mt-2 text-xs text-slate-400">
+          Separate multiple keywords with commas.
+        </p>
+
+      </div>
+
+
+      <!-- Canonical URL -->
+
+      <div>
+
+        <label
+          for="canonicalUrl"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          Canonical URL
+        </label>
+
+        <input
+          id="canonicalUrl" formControlName="canonicalUrl"
+          type="url"
+          placeholder="https://example.com/"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 bg-white
+                 text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+<p class="text-red-500 font-semibold">{{getError('canonicalUrl')}}</p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= ROBOTS SETTINGS ================= -->
+
+  <div
+    class="bg-white border border-slate-200
+           rounded-2xl shadow-sm"
+  >
+
+    <!-- Header -->
+
+    <div
+      class="px-6 py-5 border-b border-slate-200
+             flex items-center gap-3"
+    >
+
+      <div
+        class="w-10 h-10 rounded-xl
+               bg-green-100 text-green-600
+               flex items-center justify-center"
+      >
+        🤖
+      </div>
+
+      <div>
+
+        <h2 class="text-lg font-semibold text-slate-900">
+          Robots Settings
+        </h2>
+
+        <p class="text-sm text-slate-500">
+          Control how search engines crawl and index your page
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- INDEX -->
+
+      <div>
+
+        <label class="block mb-3 text-sm font-semibold text-slate-700">
+          Index
+        </label>
+
+        <div class="flex gap-3">
+
+         
+ <select class="w-full h-12 px-4 rounded-xl border border-slate-300
+                 bg-white
+                 text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition" formControlName="robotsTag">
+            <option value="Index">Index</option>
+            <option value="No Index">No Index</option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <!-- FOLLOW -->
+
+      <div>
+
+        <label class="block mb-3 text-sm font-semibold text-slate-700">
+          Follow
+        </label>
+
+        <div class="flex gap-3">
+          <select class="w-full h-12 px-4 rounded-xl border border-slate-300
+                 bg-white
+                 text-slate-800
+                 placeholder:text-slate-400
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition">
+            <option value="Follow">Follow</option>
+            <option value="No Follow">No Follow</option>
+          </select>
+          
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= OPEN GRAPH ================= -->
+
+  <div
+    class="bg-white border border-slate-200
+           rounded-2xl shadow-sm"
+  >
+
+    <!-- Header -->
+
+    <div
+      class="px-6 py-5 border-b border-slate-200
+             flex items-center gap-3"
+    >
+
+      <div
+        class="w-10 h-10 rounded-xl
+               bg-purple-100 text-purple-600
+               flex items-center justify-center"
+      >
+        📱
+      </div>
+
+      <div>
+
+        <h2 class="text-lg font-semibold text-slate-900">
+          Open Graph Tags
+        </h2>
+
+        <p class="text-sm text-slate-500">
+          Control how your website appears when shared on social media
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="p-6 space-y-6">
+
+      <!-- OG TITLE -->
+
+      <div>
+
+        <label
+          for="ogTitle"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          OG Title
+        </label>
+
+        <input
+          id="ogTitle"
+          type="text" formControlName="ogTitle"
+          placeholder="Enter Open Graph title"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+        <p class="text-red-500 font-semibold">{{getError('ogTitle')}}</p>
+
+      </div>
+
+
+      <!-- OG DESCRIPTION -->
+
+      <div>
+
+        <label
+          for="ogDescription"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          OG Description
+        </label>
+
+        <textarea
+          id="ogDescription" formControlName="ogDescription"
+          rows="4"
+          placeholder="Enter Open Graph description"
+          class="w-full px-4 py-3 rounded-xl
+                 border border-slate-300
+                 outline-none resize-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        ></textarea>
+        <p class="text-red-500 font-semibold">{{getError('ogDescription')}}</p>
+
+      </div>
+
+
+      <!-- OG IMAGE -->
+
+      <div>
+
+        <label
+          for="ogImage"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          OG Image URL
+        </label>
+
+        <input
+          id="ogImage" formControlName="ogImage"
+          type="url"
+          placeholder="https://example.com/images/og-image.jpg"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+                <p class="text-red-500 font-semibold">{{getError('ogImage')}}</p>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= TWITTER CARDS ================= -->
+
+  <div
+    class="bg-white border border-slate-200
+           rounded-2xl shadow-sm"
+  >
+
+    <!-- Header -->
+
+    <div
+      class="px-6 py-5 border-b border-slate-200
+             flex items-center gap-3"
+    >
+
+      <div
+        class="w-10 h-10 rounded-xl
+               bg-sky-100 text-sky-600
+               flex items-center justify-center"
+      >
+        🐦
+      </div>
+
+      <div>
+
+        <h2 class="text-lg font-semibold text-slate-900">
+          Twitter Cards
+        </h2>
+
+        <p class="text-sm text-slate-500">
+          Configure Twitter/X sharing information
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="p-6 space-y-6">
+
+      <!-- TWITTER TITLE -->
+
+      <div>
+
+        <label
+          for="twitterTitle"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          Twitter Title
+        </label>
+
+        <input
+          id="twitterTitle" formControlName="twitterTitle"
+          type="text"
+          placeholder="Enter Twitter title"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+                <p class="text-red-500 font-semibold">{{getError('twitterTitle')}}</p>
+
+      </div>
+
+
+      <!-- TWITTER DESCRIPTION -->
+
+      <div>
+
+        <label
+          for="twitterDescription"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          Twitter Description
+        </label>
+
+        <textarea
+          id="twitterDescription" formControlName="twitterDescription"
+          rows="4"
+          placeholder="Enter Twitter description"
+          class="w-full px-4 py-3 rounded-xl
+                 border border-slate-300
+                 outline-none resize-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        ></textarea>
+                <p class="text-red-500 font-semibold">{{getError('twitterDescription')}}</p>
+
+      </div>
+
+
+      <!-- TWITTER IMAGE -->
+
+      <div>
+
+        <label
+          for="twitterImage"
+          class="block mb-2 text-sm font-semibold text-slate-700"
+        >
+          Twitter Image URL
+        </label>
+
+        <input
+          id="twitterImage" formControlName="twitterImage"
+          type="url"
+          placeholder="https://example.com/images/twitter-card.jpg"
+          class="w-full h-12 px-4 rounded-xl
+                 border border-slate-300
+                 outline-none
+                 focus:border-blue-500
+                 focus:ring-4 focus:ring-blue-100
+                 transition"
+        />
+                <p class="text-red-500 font-semibold">{{getError('twitterImage')}}</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= SAVE BUTTON ================= -->
+
+  <div
+    class="flex justify-end gap-3 pb-8"
+  >
+
+
+    <button
+      
+      class="px-7 py-3 rounded-xl
+             bg-blue-600 text-white
+             font-semibold
+             shadow-lg shadow-blue-200
+             hover:bg-blue-700
+             transition"
+    >
+      Save SEO Settings
+    </button>
+
+  </div>
+
+</div>
+</form>

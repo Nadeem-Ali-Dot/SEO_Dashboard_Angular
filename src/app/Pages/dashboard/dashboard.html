@@ -1,0 +1,191 @@
+<!-- ========================================= -->
+      <!-- WELCOME BANNER -->
+      <!-- ========================================= -->
+
+      <div
+        class="min-h-[160px] rounded-3xl
+               bg-gradient-to-r from-blue-600 to-indigo-600
+               text-white px-9 py-7
+               flex items-center justify-between
+               shadow-xl shadow-blue-200"
+      >
+
+        <div>
+
+          <h1
+            class="text-4xl font-bold mb-3"
+          >
+            Welcome back, Admin! 👋
+          </h1>
+
+
+          <div class="flex items-center gap-3 flex-wrap">
+
+            <span class="text-lg">
+              You are logged in as
+            </span>
+
+
+            <span
+              class="px-3 py-1.5 rounded-md
+                     bg-white/20 font-medium"
+            >
+              admin
+            </span>
+
+
+            <span
+              class="flex items-center gap-2
+                     text-blue-100"
+            >
+
+              <span
+                class="w-2.5 h-2.5
+                       rounded-full bg-green-400"
+              ></span>
+
+              Backend Connected
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- MANAGE USERS -->
+
+        <button
+          type="button"
+          class="px-6 py-4 rounded-2xl
+                 bg-white/20 hover:bg-white/30
+                 transition-colors
+                 font-semibold text-lg"
+        >
+          👥 &nbsp; Manage Users
+        </button>
+
+      </div>
+
+
+
+      <!-- ========================================= -->
+      <!-- STATISTICS -->
+      <!-- ========================================= -->
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2
+               xl:grid-cols-4 gap-6 mt-8"
+      >
+
+        @for (stat of stats; track stat.title) {
+
+          <div
+            class="min-h-[150px]
+                   bg-white border border-slate-200
+                   rounded-2xl p-7
+                   flex items-center justify-between
+                   shadow-sm hover:shadow-md
+                   transition-shadow"
+          >
+
+            <!-- TEXT -->
+
+            <div>
+
+              <p
+                class="text-lg text-slate-600 mb-2"
+              >
+                {{ stat.title }}
+              </p>
+
+              <h2
+                class="text-5xl font-bold
+                       text-slate-900"
+              >
+                {{ stat.count }}
+              </h2>
+
+            </div>
+
+
+            <!-- ICON -->
+
+            <div
+              class="w-16 h-16 rounded-2xl
+                     flex items-center justify-center
+                     text-2xl"
+              [class]="stat.bg + ' ' + stat.text"
+            >
+              {{ stat.icon }}
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+
+
+      <!-- ========================================= -->
+      <!-- QUICK ACTIONS -->
+      <!-- ========================================= -->
+
+      <section class="mt-9">
+
+        <h2
+          class="text-5xl font-bold
+                 text-slate-900 mb-6"
+        >
+          Quick Actions
+        </h2>
+
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2
+                 xl:grid-cols-4 gap-5"
+        >
+
+          @for (action of quickActions; track action.title) {
+
+            <button
+              type="button"
+              class="bg-white border border-slate-200
+                     rounded-2xl p-7 text-left
+                     hover:-translate-y-1
+                     hover:shadow-lg
+                     transition-all duration-200"
+            >
+
+              <div
+                class="w-14 h-14 rounded-2xl
+                       flex items-center justify-center
+                       text-2xl"
+                [class]="action.bg + ' ' + action.text"
+              >
+                {{ action.icon }}
+              </div>
+
+
+              <h3
+                class="text-lg font-semibold
+                       text-slate-900 mt-5"
+              >
+                {{ action.title }}
+              </h3>
+
+
+              <p
+                class="text-slate-500 mt-1"
+              >
+                {{ action.description }}
+              </p>
+
+            </button>
+
+          }
+
+        </div>
+
+      </section>

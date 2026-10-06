@@ -1,0 +1,67 @@
+<section class="bg-white px-6 py-16">
+
+    <div class="mx-auto max-w-7xl">
+
+      <!-- Header -->
+      <div class="text-center">
+
+        <p class="text-sm font-semibold uppercase tracking-wider text-blue-600">
+          Services
+        </p>
+
+        <h2 class="mt-2 text-3xl font-bold text-gray-900">
+          Our Services
+        </h2>
+
+        <p class="mt-3 text-gray-500">
+          We provide transportation for all your special occasions
+        </p>
+
+      </div>
+
+
+      <!-- Occasion Grid -->
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+        @for (occasion of occasions(); track occasion.id) {
+
+          <div
+            class="overflow-hidden rounded-xl border border-gray-200
+                   bg-white shadow-sm transition duration-300
+                   hover:-translate-y-1 hover:shadow-lg">
+
+            <!-- Image -->
+            <div class="h-52 overflow-hidden bg-gray-100">
+
+              <img
+                [src]="occasion.imageUrl"
+                [alt]="occasion.title"
+                class="h-full w-full object-cover transition
+                       duration-500 hover:scale-105"
+              />
+
+            </div>
+
+
+            <!-- Content -->
+            <div class="p-5">
+
+              <h3 class="text-lg font-bold text-gray-900">
+                {{ occasion.title }}
+              </h3>
+
+              <p class="mt-3 line-clamp-5 text-sm leading-6 text-gray-600">
+                {{ occasion.description }}
+              </p>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </section>

@@ -1,0 +1,400 @@
+<div class="min-h-screen bg-gray-50 p-6">
+
+  <!-- Header -->
+  <div class="mb-6 flex items-center justify-between">
+
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">
+        Vehicle Management
+      </h1>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Manage and reorder your vehicles
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="rounded-lg border border-gray-300 bg-white px-5 py-2.5
+             text-sm font-medium text-gray-700 transition
+             hover:bg-gray-50">
+      Cancel
+    </button>
+
+  </div>
+
+
+  <!-- Add New Vehicle -->
+  <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+
+    <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+
+      <h2 class="mb-6 text-lg font-semibold text-gray-900">
+        Add New Vehicle
+      </h2>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+        <!-- Vehicle Name -->
+        <div>
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Vehicle Name
+          </label>
+
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Enter vehicle name"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2.5
+                   text-sm outline-none transition
+                   focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          />
+
+          @if (
+            vehicleForm.get('name')?.touched &&
+            vehicleForm.get('name')?.invalid
+          ) {
+            <p class="mt-1 text-xs text-red-500">
+              Vehicle name is required
+            </p>
+          }
+        </div>
+
+
+        <!-- Seating Capacity -->
+        <div>
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Seating Capacity
+          </label>
+
+          <input
+            type="number"
+            formControlName="seatingCapacity"
+            placeholder="e.g. 40"
+            min="1"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2.5
+                   text-sm outline-none transition
+                   focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          />
+
+          @if (
+            vehicleForm.get('seatingCapacity')?.touched &&
+            vehicleForm.get('seatingCapacity')?.invalid
+          ) {
+            <p class="mt-1 text-xs text-red-500">
+              Seating capacity is required
+            </p>
+          }
+        </div>
+
+
+        <!-- Vehicle Image -->
+        <div class="md:col-span-2">
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Vehicle Image
+          </label>
+
+          <div
+            class="relative flex h-40 cursor-pointer items-center
+                   justify-center rounded-lg border-2 border-dashed
+                   border-gray-300 bg-gray-50 transition
+                   hover:border-blue-400 hover:bg-blue-50"
+            (click)="fileInput.click()">
+
+            @if (imagePreview) {
+
+              <img
+                [src]="imagePreview"
+                alt="Vehicle Image"
+                class="h-full w-full rounded-lg object-contain p-2"
+              />
+
+            } @else {
+
+              <div class="text-center">
+
+                <svg
+                  class="mx-auto mb-2 h-8 w-8 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24">
+
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 16l4.586-4.586a2 2 0 015.828 0L20 17m-2-2l1.586-1.586a2 2 0 012.828 0M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+
+                </svg>
+
+                <p class="text-sm font-medium text-gray-600">
+                  Choose Image
+                </p>
+
+                <p class="mt-1 text-xs text-gray-400">
+                  PNG, JPG, GIF, WEBP up to 5MB
+                </p>
+
+              </div>
+
+            }
+
+            <input
+              #fileInput
+              type="file"
+              class="hidden"
+              accept="image/png,image/jpeg,image/gif,image/webp"
+              (change)="onImageSelected($event)"
+            />
+
+          </div>
+
+          @if (selectedFile) {
+            <p class="mt-2 text-sm text-gray-500">
+              Selected: {{ selectedFile.name }}
+            </p>
+          }
+
+        </div>
+
+
+        <!-- Description -->
+        <div class="md:col-span-2">
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Description
+          </label>
+
+          <textarea
+            rows="4"
+            formControlName="description"
+            placeholder="Enter vehicle description..."
+            class="w-full resize-none rounded-lg border border-gray-300
+                   px-4 py-3 text-sm outline-none transition
+                   focus:border-blue-500 focus:ring-2 focus:ring-blue-100"></textarea>
+
+        </div>
+
+
+        <!-- Features -->
+        <div class="md:col-span-2">
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Features
+          </label>
+
+          <input
+            type="text"
+            formControlName="features"
+            placeholder="e.g. AC, WiFi, Music System"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2.5
+                   text-sm outline-none transition
+                   focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          />
+
+          <p class="mt-1 text-xs text-gray-400">
+            Separate multiple features with commas
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Add Button -->
+      <div class="mt-6">
+
+        <button
+          type="submit"
+          [disabled]="vehicleForm.invalid"
+          class="rounded-lg bg-blue-600 px-6 py-2.5 text-sm
+                 font-semibold text-white shadow-sm transition
+                 hover:bg-blue-700 disabled:cursor-not-allowed
+                 disabled:opacity-50">
+
+          Add Vehicle
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <!-- Vehicle List -->
+  <div class="mt-8">
+
+    <div class="mb-4 flex items-center justify-between">
+
+      <div>
+        <h2 class="text-xl font-semibold text-gray-900">
+          Vehicles
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Manage your available vehicles
+        </p>
+      </div>
+
+      @if (vehicles().length > 0) {
+        <span
+          class="rounded-full bg-blue-100 px-3 py-1 text-sm
+                 font-medium text-blue-700">
+          {{ vehicles().length }} Vehicles
+        </span>
+      }
+
+    </div>
+
+
+    <!-- Vehicle Cards -->
+    @if (vehicles().length > 0) {
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+        @for (vehicle of vehicles(); track vehicle.id) {
+
+          <div
+            class="overflow-hidden rounded-xl border border-gray-200
+                   bg-white shadow-sm transition
+                   hover:-translate-y-1 hover:shadow-md">
+
+            <!-- Image -->
+            <div class="h-48 w-full overflow-hidden bg-gray-100">
+
+              <img
+                [src]="vehicle.imageUrl"
+                [alt]="vehicle.imageUrl"
+                class="h-full w-full object-cover transition
+                       duration-300 hover:scale-105"
+              />
+
+            </div>
+
+
+            <!-- Content -->
+            <div class="p-5">
+
+              <div class="flex items-start justify-between gap-3">
+
+                <h3 class="text-lg font-semibold text-gray-900">
+                  {{ vehicle.name }}
+                </h3>
+
+                <span
+                  class="whitespace-nowrap rounded-full bg-blue-100
+                         px-2.5 py-1 text-xs font-medium text-blue-700">
+                  {{ vehicle.seatingCapacity }} Seats
+                </span>
+
+              </div>
+
+
+              <!-- Description -->
+              <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
+                {{ vehicle.description }}
+              </p>
+
+
+              <!-- Features -->
+              @if (vehicle.features) {
+
+                <div class="mt-4">
+
+                  <p class="mb-2 text-xs font-semibold uppercase
+                            tracking-wide text-gray-500">
+                    Features
+                  </p>
+
+                  <div class="flex flex-wrap gap-2">
+
+                    @for (
+                      feature of vehicle.features.split(',');
+                      track feature
+                    ) {
+
+                      <span
+                        class="rounded-md bg-gray-100 px-2.5 py-1
+                               text-xs text-gray-600">
+                        {{ feature.trim() }}
+                      </span>
+
+                    }
+
+                  </div>
+
+                </div>
+
+              }
+
+            </div>
+
+
+            <!-- Actions -->
+            <div
+              class="flex items-center justify-end gap-2 border-t
+                     border-gray-100 bg-gray-50 px-5 py-3">
+
+              <button
+                type="button"
+                class="rounded-md px-3 py-1.5 text-sm font-medium
+                       text-blue-600 transition hover:bg-blue-100">
+                Edit
+              </button>
+
+              <button
+                type="button" (click)="ondelete(vehicle.id)"
+                class="rounded-md px-3 py-1.5 text-sm font-medium
+                       text-red-600 transition hover:bg-red-100">
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <!-- Empty State -->
+      <div
+        class="rounded-xl border border-dashed border-gray-300
+               bg-white py-16 text-center">
+
+        <svg
+          class="mx-auto h-12 w-12 text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M8 7h8m-8 4h8m-8 4h5m7 5H6a2 2 0 01-2-2V6a2 2 0 012-2h8l4 4v10a2 2 0 01-2 2z"
+          />
+
+        </svg>
+
+        <h3 class="mt-4 text-base font-semibold text-gray-700">
+          No vehicles added yet
+        </h3>
+
+        <p class="mt-1 text-sm text-gray-400">
+          Click "Add Vehicle" to get started
+        </p>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
