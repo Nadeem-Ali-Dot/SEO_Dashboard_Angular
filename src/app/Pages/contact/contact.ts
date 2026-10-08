@@ -37,9 +37,10 @@ onSubmit(){
     this.ContactForm.markAllAsTouched();
     return;
   }
+  this.isloading.set(true);
   this.service.postData(this.ContactForm.value).subscribe(res=>{
     this.toast.success("Contact update changes successfully","Success");
-
+this.isloading.set(false);
   })
 
 }

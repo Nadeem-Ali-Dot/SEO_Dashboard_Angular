@@ -283,19 +283,47 @@
 
         <!-- SAVE -->
 
-        <div class="pt-2 flex justify-end">
+        <div class="pt-2 flex items-center justify-end gap-3">
 
-          <button
-           
-            class="px-7 py-3 rounded-xl
-                   bg-blue-600 text-white
-                   font-semibold
-                   shadow-lg shadow-blue-200
-                   hover:bg-blue-700
-                   transition"
-          >
-            Save Changes
-          </button>
+        
+
+
+         <button
+  type="submit"
+  [disabled]="isloading()"
+  class="px-7 py-3 rounded-xl
+         bg-blue-600 text-white
+         font-semibold
+         shadow-lg shadow-blue-200
+         hover:bg-blue-700
+         transition
+         disabled:opacity-70
+         disabled:cursor-not-allowed">
+
+  @if (isloading()) {
+
+    <span class="inline-flex items-center gap-2">
+
+      <span
+        class="h-5 w-5
+               animate-spin
+               rounded-full
+               border-2
+               border-white/40
+               border-t-white">
+      </span>
+
+      Saving...
+
+    </span>
+
+  } @else {
+
+    Save Changes
+
+  }
+
+</button>
 
         </div>
 

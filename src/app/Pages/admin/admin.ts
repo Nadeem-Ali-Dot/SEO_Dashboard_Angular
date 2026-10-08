@@ -19,7 +19,7 @@ nowdate : Date=new Date();
     {
       title: 'Dashboard',
       icon: '⌂',
-      url:''
+      url:'dashboadHome'
     },
     {
       title: 'SEO Settings',

@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class About implements OnInit {
  selectedFile: File | null = null;
-  imagePreview: string = '';
+  imagePreview: string | null = '';
   isloading = signal(false);
   AboutsectionForm: FormGroup;
   constructor(private c:AboutSection,private fb:FormBuilder,private tost:ToastrService){
@@ -104,6 +104,9 @@ console.log(res);
       }
     });
     
+  }
+  removeimage(){
+    this.imagePreview=null;
   }
 }
 

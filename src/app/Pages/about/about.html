@@ -104,15 +104,15 @@
             <!-- @if (about.featuredImage) { -->
 
               <div class="relative">
-
+                 
                 <img  [src]="imagePreview"
                   alt="About Featured Image"
                   class="w-full h-56 object-cover rounded-xl border border-slate-200"
                 />
 
                 <!-- Remove -->
-                <button
-                 
+                <button type="button"
+                 (click)="removeimage()"
                  
                   class="absolute top-3 right-3
                          w-9 h-9 rounded-full

@@ -57,7 +57,7 @@ Cancel
             occasionForm.get('title')?.touched &&
             occasionForm.get('title')?.invalid
           ) {
-            <p class="mt-1 text-xs text-red-500">
+            <p class="mt-1  text-red-500">
               Title is required
             </p>
           }
@@ -82,7 +82,7 @@ Cancel
             occasionForm.get('description')?.touched &&
             occasionForm.get('description')?.invalid
           ) {
-            <p class="mt-1 text-xs text-red-500">
+            <p class="mt-1  text-red-500">
               Description is required
             </p>
           }
@@ -151,30 +151,66 @@ Cancel
 
           </div>
 
+
           @if (selectedFile) {
             <p class="mt-2 text-sm text-gray-500">
               Selected: {{ selectedFile.name }}
             </p>
           }
+          @else { <p class="mt-2 text-sm text-red-500">
+              Occasion Image is required
+            </p> }
+
 
         </div>
 
       </div>
 
 
-      <!-- Add Button -->
-      <div class="mt-6">
-        <button
-          type="submit"
-          [disabled]="occasionForm.invalid"
-          class="rounded-lg bg-blue-600 px-6 py-2.5 text-sm
-                 font-semibold text-white shadow-sm transition
-                 hover:bg-blue-700 disabled:cursor-not-allowed
-                 disabled:opacity-50">
+        <!-- Buttons -->
+        <div class="pt-2 flex items-center justify-end gap-3">
 
-          Add Occasion
-        </button>
-      </div>
+        
+
+
+         <button
+  type="submit"
+  [disabled]="isloading()"
+  class="px-7 py-3 rounded-xl
+         bg-blue-600 text-white
+         font-semibold
+         shadow-lg shadow-blue-200
+         hover:bg-blue-700
+         transition
+         disabled:opacity-70
+         disabled:cursor-not-allowed">
+
+  @if (isloading()) {
+
+    <span class="inline-flex items-center gap-2">
+
+      <span
+        class="h-5 w-5
+               animate-spin
+               rounded-full
+               border-2
+               border-white/40
+               border-t-white">
+      </span>
+
+      Saving...
+
+    </span>
+
+  } @else {
+
+    Add Occasion
+  }
+
+</button>
+
+        </div>
+      
 
     </form>
 

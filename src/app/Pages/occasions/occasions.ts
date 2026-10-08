@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OccasionsService } from '../../Service/occasions-service';
 import { Ioccasions } from '../../interface/ioccasions';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class Occasions implements OnInit {
 imagePreview = '';
 selectedFile: File | null = null;
-isloading = false;
+isloading = signal(false);
 isopen:boolean=false;
 
  occasionForm:FormGroup ;
@@ -21,8 +21,8 @@ occasions = signal<Ioccasions[]>([]);
   constructor(private fb:FormBuilder,private service:OccasionsService,private tost:ToastrService){
   this.occasionForm=this.fb.group({
     id: [0],
-title:[''],
-description:[''],
+title:['',Validators.required],
+description:['',Validators.required],
 imageUrl:[''],
 displayOrder: [0],
 publicId: ['']
@@ -30,6 +30,7 @@ publicId: ['']
  }
  
 ngOnInit(): void {
+
 this.loaddata();
 }
 
@@ -82,6 +83,7 @@ onImageSelected(event: Event) {
     this.occasionForm.markAllAsTouched();
     return;
   }
+  
   const formData=new FormData();
   formData.append("id",this.occasionForm.get('id')?.value);
   formData.append("title",this.occasionForm.get('title')?.value);
@@ -92,13 +94,15 @@ onImageSelected(event: Event) {
 
   }
 
-  console.log(this.occasionForm.value)
+ 
+  this.isloading.set(true)
   this.service.PostData(formData).subscribe(res=>{
      this.tost.success("Occasion Has Been Added Suceesfully","Success");
      this.occasionForm.reset();
      this.imagePreview="";
          this.loaddata();
     console.log(res);
+    this.isloading.set(false);
   })
  }
  Editoccasion(obj:Ioccasions){
